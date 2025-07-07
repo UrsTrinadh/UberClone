@@ -1,28 +1,24 @@
-/**
- * Sample React Native App
- * https://github.com/facebook/react-native
- *
- * @format
- */
+// File: App.tsxs
+import React from 'react'
+import { NavigationContainer } from '@react-navigation/native'
+import { createNativeStackNavigator } from '@react-navigation/native-stack'
+import splashscreen from './src/screens/splash/index.js'
+import GetStarted from './src/screens/GetStarted/index.js'
+import OtpScreen from './src/screens/OtpScreen/index.js'
 
-import { NewAppScreen } from '@react-native/new-app-screen';
-import { StatusBar, StyleSheet, useColorScheme, View } from 'react-native';
+const Stack = createNativeStackNavigator()
 
-function App() {
-  const isDarkMode = useColorScheme() === 'dark';
-
+const App = () => {
   return (
-    <View style={styles.container}>
-      <StatusBar barStyle={isDarkMode ? 'light-content' : 'dark-content'} />
-      <NewAppScreen templateFileName="App.tsx" />
-    </View>
-  );
+    <NavigationContainer>
+      <Stack.Navigator initialRouteName='splash' screenOptions={{ headerShown: false }}>
+        <Stack.Screen name="splash" component={splashscreen}/>
+        <Stack.Screen name="GetStarted" component={GetStarted}/>
+        <Stack.Screen name="OtpScreen" component={OtpScreen}/>
+      </Stack.Navigator>
+    </NavigationContainer>
+  )
 }
 
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-  },
-});
+export default App
 
-export default App;
